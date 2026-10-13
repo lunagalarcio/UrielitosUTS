@@ -1,0 +1,16 @@
+# Excluir el backend Python del deploy estático en Vercel.
+# Vercel detecta app.py como función serverless y falla con:
+# "Found app.py but it does not export a top-level app/application/handler".
+# El sitio estático vive en sismos-santander/ y no necesita nada de esto.
+app.py
+src/
+rl/
+models/
+data/
+scripts/
+dashboard/
+docs/
+requirements.txt
+SPEC.md
+__pycache__/
+*.pyc
