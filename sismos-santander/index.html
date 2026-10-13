@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sismos Santander: actividad sísmica de los 87 municipios de Santander con datos del SGC, DANE e IGAC.">
+  <title>Sismos Santander</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <script>
+    // Aplica el tema guardado antes de pintar la página (evita el parpadeo)
+    try { const t = localStorage.getItem("tema"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- ============ MENÚ LATERAL (desplegable) ============ -->
+  <aside class="lateral" id="lateral">
+    <div class="logo">
+      <div class="logo-franja" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div>
+        <strong>Sismos Santander</strong>
+        <small>Actividad sísmica municipal</small>
+      </div>
+    </div>
+
+    <nav class="pestanas" id="pestanas" aria-label="Secciones">
+      <button data-tab="panorama" class="activa" data-titulo="Mapa de riesgo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Zm0 0v14m6-12v14"/></svg>
+        <span>Mapa de riesgo</span></button>
+      <button data-tab="basico" data-titulo="Clasificación del nivel de riesgo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg>
+        <span>Clasificación</span></button>
+      <button data-tab="actividad" data-titulo="Actividad sísmica del catálogo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h4l3-8 4 16 3-8h6"/></svg>
+        <span>Actividad sísmica</span></button>
+      <button data-tab="medio" data-titulo="Grupos territoriales">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><circle cx="12" cy="17" r="3"/></svg>
+        <span>Grupos territoriales</span></button>
+      <button data-tab="avanzado" data-titulo="Priorización con aprendizaje por refuerzo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>
+        <span>Priorización</span></button>
+      <button data-tab="boletines" data-titulo="Boletines por municipio">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7V3Zm7 0v5h5M10 13h6m-6 4h6"/></svg>
+        <span>Boletines</span></button>
+      <button data-tab="variables" data-titulo="Datos, variables y trazabilidad">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
+        <span>Datos y variables</span></button>
+    </nav>
+
+    <div class="lateral-pie">
+      <div class="fuente-mini" id="fuenteMini">Catálogo SGC</div>
+      <small>Datos: SGC, DANE, IGAC y UNGRD</small>
+    </div>
+  </aside>
+  <div class="velo" id="velo"></div>
+
+  <!-- ============ CONTENIDO ============ -->
+  <div class="principal">
+    <header class="barra-superior">
+      <button class="icono" id="botonMenu" aria-label="Mostrar u ocultar el menú" aria-controls="lateral">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="titulo-barra">
+        <h1 id="tituloSeccion">Mapa de riesgo</h1>
+        <span class="etiqueta" id="etiquetaDatos">Cargando</span>
+      </div>
+      <button class="icono" id="botonTema" aria-label="Cambiar entre modo claro y oscuro">
+        <svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="luna" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg>
+      </button>
+    </header>
+
+    <div class="aviso-prediccion">
+      <b>Este sistema no predice sismos.</b> Ningún método científico puede anunciar hoy cuándo, dónde y de qué magnitud ocurrirá un sismo.
+      Lo que se muestra es una estimación estadística de la actividad esperada a partir del historial; puede fallar y no reemplaza la información oficial del SGC ni de la UNGRD.
+    </div>
+
+    <main>
+      <div id="mensaje" class="mensaje info">Preparando...</div>
+
+      <!-- ============ MAPA DE RIESGO ============ -->
+      <section class="tab" id="tab-panorama">
+        <div id="panoramaCifras"></div>
+        <div class="panorama">
+          <div class="tarjeta tarjeta-mapa">
+            <div class="cabeza">
+              <h2>Santander por municipio</h2>
+              <div class="leyenda">
+                <span><i class="Alto"></i>Actividad alta</span>
+                <span><i class="Medio"></i>Media</span>
+                <span><i class="Bajo"></i>Baja</span>
+                <span><i class="prior"></i>Priorizado</span>
+              </div>
+            </div>
+            <div id="mapaPanorama" class="mapa mapa-grande"></div>
+            <p class="nota">Color: nivel de actividad previsto para 2026 por el modelo supervisado. Borde grueso: municipio priorizado por el agente RL. Línea naranja: fallas activas. Toca un municipio para ver su resumen y descargar su boletín.</p>
+          </div>
+          <div class="tarjeta lista-riesgo">
+            <h2>Municipios con posible riesgo</h2>
+            <p class="nota">Priorizados por el agente RL según amenaza, exposición y vulnerabilidad.</p>
+            <div id="listaRiesgo" class="vacio">Esperando datos...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CLASIFICACIÓN ============ -->
+      <section class="tab tarjeta oculto" id="tab-basico">
+        <h2>Modelo supervisado</h2>
+        <p class="nota">Clasifica a cada municipio en riesgo <b>bajo, medio o alto</b> según los terciles del índice de riesgo del equipo (50 % actividad sísmica + 30 % exposición poblacional + 20 % vulnerabilidad). Se entrena con el 75 % de los municipios y se evalúa con el 25 % restante, que el modelo nunca vio. No anuncia sismos.</p>
+        <div id="basicoContenido" class="vacio">Esperando datos...</div>
+      </section>
+
+      <!-- ============ ACTIVIDAD SÍSMICA ============ -->
+      <section class="tab tarjeta oculto" id="tab-actividad">
+        <h2>Actividad sísmica del catálogo SGC</h2>
+        <p class="nota">Agregados directos de los <b>90.367 eventos M ≥ 2,0</b> del catálogo unificado 1993–hoy asignados a los 87 municipios. Sin modelos: conteos, magnitudes y profundidades tal cual.</p>
+        <div id="actividadContenido" class="vacio">Esperando datos...</div>
+      </section>
+
+      <!-- ============ GRUPOS ============ -->
+      <section class="tab tarjeta oculto" id="tab-medio">
+        <h2>Agrupamiento no supervisado (aglomerativo)</h2>
+        <p class="nota">Agrupa los 87 municipios por su perfil sísmico, poblacional y de emergencias (35 variables, k = 3 elegido por silueta), y ubica las fuentes sísmicas con DBSCAN sobre epicentros M ≥ 3.</p>
+        <div id="medioContenido" class="vacio">Esperando datos...</div>
+        <div id="mapaGrupos" class="mapa oculto"></div>
+      </section>
+
+      <!-- ============ PRIORIZACIÓN ============ -->
+      <section class="tab tarjeta oculto" id="tab-avanzado">
+        <h2>Agente de aprendizaje por refuerzo</h2>
+        <p class="nota">El agente recorre los 87 municipios y decide <b>priorizar o no priorizar</b> cada uno, aprendiendo con PPO y DQN a maximizar la recompensa (alta cuando prioriza municipios de alto riesgo y exposición, negativa en caso contrario). Mueve K para ver más o menos municipios del ranking.</p>
+        <div class="controles">
+          <label>Municipios a priorizar (K) <input type="range" id="kPriorizar" min="5" max="20" value="10"></label>
+          <span id="kValor" class="etiqueta">K = 10</span>
+        </div>
+        <div id="avanzadoContenido" class="vacio">Esperando datos...</div>
+        <div id="mapaPrioridad" class="mapa oculto"></div>
+        <div id="avanzadoTablas"></div>
+      </section>
+
+      <!-- ============ BOLETINES ============ -->
+      <section class="tab tarjeta oculto" id="tab-boletines">
+        <h2>Boletines en PDF</h2>
+        <p class="nota">Filtra los municipios y descarga el boletín del que necesites. Cada boletín trae la actividad reciente, el nivel estimado, la prioridad, el mapa del municipio, recomendaciones y evacuación.</p>
+        <div class="controles">
+          <label>Nivel estimado <select id="filtroNivel"><option value="">Todos</option><option>Alto</option><option>Medio</option><option>Bajo</option></select></label>
+          <label>Prioridad <select id="filtroPrioridad"><option value="">Todos</option><option value="si">Solo priorizados</option></select></label>
+          <label>Grupo <select id="filtroGrupo"><option value="">Todos</option></select></label>
+          <label>Buscar <input type="text" id="filtroTexto" placeholder="Municipio"></label>
+          <button id="botonBoletinDepto">Boletín departamental</button>
+        </div>
+        <div id="boletinesContenido" class="vacio">Esperando datos...</div>
+      </section>
+
+      <!-- ============ DATOS Y VARIABLES ============ -->
+      <section class="tab oculto" id="tab-variables">
+        <div class="tarjeta">
+          <h2>Fuentes oficiales</h2>
+          <div id="fuentesContenido" class="vacio">Esperando datos...</div>
+        </div>
+        <div class="tarjeta">
+          <h2>Tabla única y variables</h2>
+          <div id="variablesContenido" class="vacio">Esperando datos...</div>
+        </div>
+        <div class="tarjeta">
+          <h2>Puntos de encuentro para los boletines (opcional)</h2>
+          <p class="nota">Si el equipo consigue los puntos de encuentro y las rutas de evacuación de algún municipio, cárguelos aquí para que salgan en su boletín. Formato CSV: municipio,tipo,nombre,lat,lon,descripcion (plantilla en data/plantilla_evacuacion.csv).</p>
+          <input type="file" id="archivoEvacuacion" accept=".csv,.txt">
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Prototipo académico. Los resultados no reemplazan los estudios oficiales de amenaza sísmica ni la información del SGC y la UNGRD.
+    </footer>
+  </div>
+</div>
+
+  <!-- Librerías (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Datos incluidos -->
+  <script src="data/resultados_equipo.js"></script>
+  <script src="data/municipios_geo.js"></script>
+  <script src="data/fallas_activas.js"></script>
+  <!-- Código del proyecto -->
+  <script src="js/utilidades.js"></script>
+  <script src="js/boletines.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{
+  "mejor_modelo": "Aglomerativo_k3",
+  "silhouette": 0.1999,
+  "comparacion_silhouette": {
+    "KMeans_k3": 0.1492,
+    "KMeans_k4": 0.1434,
+    "KMeans_k5": 0.1502,
+    "KMeans_k6": 0.1603,
+    "Aglomerativo_k3": 0.1999,
+    "DBSCAN_eps0.8": -1.0,
+    "DBSCAN_eps1.2": -1.0,
+    "DBSCAN_eps1.6": -1.0
+  },
+  "n_clusters": 3,
+  "ruido_dbscan": 0,
+  "varianza_pca2d": 0.4556,
+  "perfiles": {
+    "0": {
+      "n_municipios": 31,
+      "nivel_asociado": "Alto",
+      "rasgos_distintivos": [
+        "log_poblacion (z=0.85)",
+        "emergencias_totales (z=0.68)",
+        "emergencias_por_anio (z=0.68)",
+        "magnitud_maxima (z=0.60)",
+        "personas_afectadas (z=0.49)"
+      ],
+      "municipios": [
+        "LOS SANTOS",
+        "ZAPATOCA",
+        "PIEDECUESTA",
+        "EL CARMEN DE CHUCURI",
+        "BARRANCABERMEJA"
+      ]
+    },
+    "1": {
+      "n_municipios": 48,
+      "nivel_asociado": "Bajo",
+      "rasgos_distintivos": [
+        "magnitud_minima (z=0.56)",
+        "profundidad_std (z=0.39)",
+        "pct_sismos_superficiales (z=0.22)",
+        "lon_mpio (z=0.17)",
+        "tendencia_sismica (z=0.14)"
+      ],
+      "municipios": [
+        "CURITI",
+        "PUENTE NACIONAL",
+        "TONA",
+        "MATANZA",
+        "CHIPATA"
+      ]
+    },
+    "2": {
+      "n_municipios": 8,
+      "nivel_asociado": "Medio",
+      "rasgos_distintivos": [
+        "pct_sismos_mag_mayor_5 (z=2.24)",
+        "magnitud_promedio (z=1.34)",
+        "pct_sismos_mag_mayor_4 (z=1.29)",
+        "magnitud_maxima (z=1.28)",
+        "profundidad_maxima (z=1.04)"
+      ],
+      "municipios": [
+        "CEPITA",
+        "GUACA",
+        "JORDAN",
+        "ARATOCA",
+        "SAN ANDRES"
+      ]
+    }
+  },
+  "ari_vs_supervisado": 0.4085,
+  "acuerdo_nivel_vs_supervisado": 0.6437
+}

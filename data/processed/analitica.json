@@ -1,0 +1,164 @@
+{
+  "estadisticas": {
+    "n_municipios": 87,
+    "n_sismos": 208230,
+    "magnitud_max_dpto": 6.4,
+    "magnitud_prom_dpto": 2.0,
+    "profundidad_prom_dpto": 136.3,
+    "pct_superficiales": 2.8,
+    "poblacion_total": 2407319,
+    "emergencias_totales": 1421,
+    "distribucion_riesgo": {
+      "Alto": 29,
+      "Bajo": 29,
+      "Medio": 29
+    },
+    "anio_mas_activo": 2024,
+    "sismos_anio_mas_activo": 15974,
+    "sismos_ultimos_5_anios_pct": 32.6
+  },
+  "top10_riesgo": [
+    {
+      "municipio": "PIEDECUESTA",
+      "indice_riesgo": 0.8082837185629176,
+      "cantidad_total_sismos": 3386,
+      "magnitud_maxima": 5.4,
+      "poblacion_actual": 194535.0
+    },
+    {
+      "municipio": "BARRANCABERMEJA",
+      "indice_riesgo": 0.695608491272924,
+      "cantidad_total_sismos": 636,
+      "magnitud_maxima": 4.6,
+      "poblacion_actual": 218932.0
+    },
+    {
+      "municipio": "LOS SANTOS",
+      "indice_riesgo": 0.6838728252727737,
+      "cantidad_total_sismos": 104654,
+      "magnitud_maxima": 6.4,
+      "poblacion_actual": 15716.0
+    },
+    {
+      "municipio": "CIMITARRA",
+      "indice_riesgo": 0.6488937539382372,
+      "cantidad_total_sismos": 1298,
+      "magnitud_maxima": 5.4,
+      "poblacion_actual": 36166.0
+    },
+    {
+      "municipio": "ZAPATOCA",
+      "indice_riesgo": 0.6463727263924012,
+      "cantidad_total_sismos": 26276,
+      "magnitud_maxima": 6.2,
+      "poblacion_actual": 10143.0
+    },
+    {
+      "municipio": "EL CARMEN DE CHUCURI",
+      "indice_riesgo": 0.6283197730409997,
+      "cantidad_total_sismos": 5095,
+      "magnitud_maxima": 5.4,
+      "poblacion_actual": 22888.0
+    },
+    {
+      "municipio": "BUCARAMANGA",
+      "indice_riesgo": 0.6206205026165077,
+      "cantidad_total_sismos": 241,
+      "magnitud_maxima": 4.2,
+      "poblacion_actual": 627393.0
+    },
+    {
+      "municipio": "GIRON",
+      "indice_riesgo": 0.6043496342118593,
+      "cantidad_total_sismos": 1471,
+      "magnitud_maxima": 4.3,
+      "poblacion_actual": 177630.0
+    },
+    {
+      "municipio": "LEBRIJA",
+      "indice_riesgo": 0.5946529914852149,
+      "cantidad_total_sismos": 807,
+      "magnitud_maxima": 5.3,
+      "poblacion_actual": 46658.0
+    },
+    {
+      "municipio": "SAN VICENTE DE CHUCURI",
+      "indice_riesgo": 0.5940534060796285,
+      "cantidad_total_sismos": 2681,
+      "magnitud_maxima": 5.2,
+      "poblacion_actual": 37314.0
+    }
+  ],
+  "top10_rl": [
+    {
+      "puesto": 1,
+      "municipio": "BUCARAMANGA",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.6206205026165077
+    },
+    {
+      "puesto": 2,
+      "municipio": "BARBOSA",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.4109651881749773
+    },
+    {
+      "puesto": 3,
+      "municipio": "ARATOCA",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.4297303240323381
+    },
+    {
+      "puesto": 4,
+      "municipio": "BARICHARA",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.5017628930994521
+    },
+    {
+      "puesto": 5,
+      "municipio": "BARRANCABERMEJA",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.695608491272924
+    },
+    {
+      "puesto": 6,
+      "municipio": "BOLIVAR",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.4673722594038167
+    },
+    {
+      "puesto": 7,
+      "municipio": "BETULIA",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.4842047984644352
+    },
+    {
+      "puesto": 8,
+      "municipio": "CEPITA",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.4937265857511825
+    },
+    {
+      "puesto": 9,
+      "municipio": "CIMITARRA",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.6488937539382372
+    },
+    {
+      "puesto": 10,
+      "municipio": "SAN GIL",
+      "score_rl_100": 100.0,
+      "indice_riesgo": 0.4927307422403146
+    }
+  ],
+  "insights": [
+    "Los Santos concentra 104,654 sismos (50.3% del total departamental), lo que lo ubica como el epicentro instrumental de Santander.",
+    "Los municipios del área de influencia del Nido Sísmico de Bucaramanga (Los Santos, Zapatoca, Cepita, Villanueva, Jordan) presentan una frecuencia sísmica 6.3x superior al promedio departamental (447 vs 70 sismos/año).",
+    "El 2.8% de los sismos es superficial (<50 km); estos eventos, aunque menos frecuentes, representan la mayor amenaza para infraestructura por su cercanía a la superficie.",
+    "Se registran 166 sismos de magnitud ≥5.0 en el periodo; la magnitud máxima instrumental es 6.4 Ml/Mw.",
+    "Los 5 municipios con mayor índice de riesgo son Piedecuesta (0.81), Barrancabermeja (0.70), Los Santos (0.68), Cimitarra (0.65), Zapatoca (0.65); combinar sismicidad con exposición poblacional cambia el orden frente al conteo de sismos puro.",
+    "En vulnerabilidad histórica destacan Barrancabermeja (14,479 personas afectadas), Cimitarra (6,410 personas afectadas), Bucaramanga (4,975 personas afectadas), donde la gestión del riesgo debe priorizar respuesta y recuperación.",
+    "9 municipios muestran tendencia sísmica creciente en la última década (ej. Jordan, Aratoca, Cepita); se recomienda monitoreo instrumental reforzado.",
+    "Clasificación final: 29 municipios en riesgo Alto, 29 en Medio y 29 en Bajo, sobre 87 municipios evaluados de Santander."
+  ]
+}

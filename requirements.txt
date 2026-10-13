@@ -1,0 +1,23 @@
+# Núcleo científico
+pandas>=2.0
+numpy>=1.26
+scikit-learn>=1.3
+scipy>=1.11
+joblib>=1.3
+openpyxl>=3.1
+
+# Modelos opcionales (el pipeline funciona sin ellos; los usa si están instalados)
+xgboost>=2.0
+lightgbm>=4.0
+
+# RL opcional (agentes propios numpy/sklearn incluidos por defecto)
+gymnasium>=0.29
+stable-baselines3>=2.0
+torch>=2.0
+
+# Dashboard
+streamlit>=1.32
+plotly>=5.18
+folium>=0.15
+matplotlib>=3.8
+seaborn>=0.13

@@ -1,0 +1,9 @@
+{
+  "ganador": "DQN",
+  "recompensas_medias": {
+    "PPO": 9.135,
+    "DQN": 9.857
+  },
+  "episodios": 120,
+  "n_municipios": 87
+}
