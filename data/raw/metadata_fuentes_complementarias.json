@@ -1,0 +1,25 @@
+{
+  "dane_divipola.csv": {
+    "url": "https://www.datos.gov.co/resource/gdxc-w37w.csv?$limit=1000000",
+    "bytes": 81998,
+    "fecha_descarga_utc": "2026-10-13T13:57:30+00:00",
+    "filas": 1122
+  },
+  "ungrd_emergencias_2019_2024.csv": {
+    "url": "https://www.datos.gov.co/resource/wwkg-r6te.csv?$limit=1000000",
+    "bytes": 15326016,
+    "fecha_descarga_utc": "2026-10-13T13:57:35+00:00",
+    "filas": 25857
+  },
+  "ungrd_emergencias_2025.csv": {
+    "url": "https://www.datos.gov.co/resource/2343-nuqp.csv?$limit=1000000",
+    "bytes": 13130437,
+    "fecha_descarga_utc": "2026-10-13T13:57:41+00:00",
+    "filas": 13012
+  },
+  "dane_proyeccion_poblacion_municipal_2020_2035.xlsx": {
+    "url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/DCD-area-proypoblacion-Mun-2020-2035-ActPostCOVID-19.xlsx",
+    "bytes": 1878067,
+    "fecha_descarga_utc": "2026-10-13T13:57:43+00:00"
+  }
+}

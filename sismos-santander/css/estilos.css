@@ -1,0 +1,254 @@
+/* =============================================================
+   Sismos Santander — estilos
+   Mismo lenguaje visual del SAT Santander: menú lateral desplegable,
+   barra superior, modo claro/oscuro y la paleta institucional de
+   Santander (verde, amarillo, rojo) sobre pizarra.
+   ============================================================= */
+:root {
+  --verde: #006b3f;
+  --amarillo: #ffd100;
+  --rojo: #c8102e;
+  --pizarra: #1e293b;
+
+  --fondo: #f1f4f2;
+  --superficie: #ffffff;
+  --superficie-2: #f7f9f8;
+  --linea: #dde3df;
+  --texto: #15201b;
+  --suave: #5b6862;
+  --lateral: #0f2a1f;          /* menú lateral */
+  --lateral-texto: #cfe0d7;
+  --acento: var(--verde);
+  --acento-suave: #e3f1ea;
+
+  --bajo: #1f8a4c;
+  --medio: #e0a800;
+  --alto: var(--rojo);
+  --sin-datos: #c9d1cc;
+
+  --radio: 10px;
+  --sombra: 0 1px 2px rgba(15, 42, 31, 0.06), 0 4px 14px rgba(15, 42, 31, 0.05);
+  --fuente: "Inter", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --ancho-lateral: 248px;
+}
+
+[data-theme="dark"] {
+  --fondo: #0b1220;
+  --superficie: #131c2e;
+  --superficie-2: #182338;
+  --linea: #263248;
+  --texto: #e6ecf2;
+  --suave: #93a1b5;
+  --lateral: #0a101c;
+  --lateral-texto: #b8c4d6;
+  --acento: #2fbf71;
+  --acento-suave: #12301f;
+  --bajo: #2fbf71;
+  --medio: #ffd100;
+  --sin-datos: #3a465c;
+  --sombra: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: var(--fuente); font-size: 15px; line-height: 1.55;
+  background: var(--fondo); color: var(--texto);
+}
+:focus-visible { outline: 2px solid var(--amarillo); outline-offset: 2px; }
+a { color: var(--acento); }
+
+/* ---------- Estructura general ---------- */
+.app { display: flex; min-height: 100vh; }
+.principal { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+main { padding: 20px 28px 0; max-width: 1440px; width: 100%; margin: 0 auto; }
+
+/* ---------- Menú lateral desplegable ---------- */
+.lateral {
+  width: var(--ancho-lateral); flex-shrink: 0; background: var(--lateral); color: var(--lateral-texto);
+  display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh;
+  transition: margin-left 0.25s ease;
+}
+.app.menu-cerrado .lateral { margin-left: calc(-1 * var(--ancho-lateral)); }
+.logo { display: flex; gap: 12px; align-items: center; padding: 20px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.logo strong { display: block; color: #fff; font-size: 1.02rem; letter-spacing: -0.01em; }
+.logo small { color: var(--lateral-texto); font-size: 0.78rem; }
+.logo-franja { display: flex; flex-direction: column; width: 8px; height: 38px; border-radius: 3px; overflow: hidden; }
+.logo-franja span { flex: 1; }
+.logo-franja span:nth-child(1) { background: var(--verde); }
+.logo-franja span:nth-child(2) { background: var(--amarillo); }
+.logo-franja span:nth-child(3) { background: var(--rojo); }
+
+.pestanas { display: flex; flex-direction: column; gap: 2px; padding: 14px 10px; flex: 1; overflow-y: auto; }
+.pestanas button {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  background: none; border: 0; border-radius: 8px; padding: 10px 12px;
+  color: var(--lateral-texto); font: inherit; font-size: 0.92rem; cursor: pointer;
+}
+.pestanas button svg { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pestanas button:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+.pestanas button.activa { background: rgba(255, 209, 0, 0.12); color: #fff; box-shadow: inset 3px 0 0 var(--amarillo); }
+.lateral-pie { padding: 14px 18px 18px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.78rem; }
+.fuente-mini { color: #fff; margin-bottom: 4px; font-family: var(--mono); font-size: 0.74rem; word-break: break-word; }
+.velo { display: none; }
+
+/* ---------- Barra superior ---------- */
+.barra-superior {
+  position: sticky; top: 0; z-index: 900; display: flex; align-items: center; gap: 14px;
+  padding: 12px 28px; background: var(--superficie); border-bottom: 1px solid var(--linea);
+}
+.titulo-barra { flex: 1; display: flex; align-items: center; gap: 12px; min-width: 0; flex-wrap: wrap; }
+.barra-superior h1 { margin: 0; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+.etiqueta {
+  font-family: var(--mono); font-size: 0.75rem; padding: 3px 10px; border-radius: 999px;
+  background: var(--acento-suave); color: var(--acento); white-space: nowrap;
+}
+button.icono {
+  width: 38px; height: 38px; display: grid; place-items: center; padding: 0;
+  border-radius: 8px; border: 1px solid var(--linea); background: var(--superficie); color: var(--texto); cursor: pointer;
+}
+button.icono svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+[data-theme="light"] .luna, [data-theme="dark"] .sol { display: none; }
+
+.aviso-prediccion {
+  background: color-mix(in srgb, var(--amarillo) 14%, var(--superficie));
+  border-bottom: 1px solid color-mix(in srgb, var(--amarillo) 45%, var(--linea));
+  padding: 9px 28px; font-size: 0.86rem;
+}
+
+/* ---------- Paneles ---------- */
+.tarjeta {
+  background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio);
+  padding: 20px 22px; margin-bottom: 20px; box-shadow: var(--sombra);
+}
+.tarjeta h2 { margin: 0 0 6px; font-size: 1.12rem; font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 0.98rem; font-weight: 650; margin: 24px 0 10px; }
+.nota { color: var(--suave); font-size: 0.88rem; max-width: 90ch; }
+.vacio { color: var(--suave); padding: 28px; text-align: center; border: 1px dashed var(--linea); border-radius: var(--radio); margin-top: 10px; }
+.oculto { display: none !important; }
+
+/* ---------- Mapa de riesgo ---------- */
+.panorama { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 20px; align-items: start; }
+.cabeza { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.leyenda { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8rem; color: var(--suave); }
+.leyenda i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.leyenda i.Alto { background: var(--alto); }
+.leyenda i.Medio { background: var(--medio); }
+.leyenda i.Bajo { background: var(--bajo); }
+.leyenda i.sin { background: var(--sin-datos); }
+.leyenda i.prior { background: transparent; border: 3px solid var(--texto); }
+.mapa-grande { height: 560px; }
+.lista-riesgo { position: sticky; top: 76px; max-height: calc(100vh - 100px); display: flex; flex-direction: column; }
+#listaRiesgo { overflow-y: auto; }
+.item-riesgo {
+  display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center;
+  padding: 10px 4px; border-bottom: 1px solid var(--linea); cursor: pointer;
+}
+.item-riesgo:hover { background: var(--superficie-2); }
+.item-riesgo .puesto { font-family: var(--mono); color: var(--suave); font-size: 0.85rem; }
+.item-riesgo b { display: block; font-weight: 600; }
+.item-riesgo small { color: var(--suave); font-size: 0.78rem; }
+
+/* ---------- Controles ---------- */
+.carga { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-end; }
+.campo { display: block; margin-bottom: 12px; font-size: 0.86rem; color: var(--suave); }
+.campo input { display: block; margin-top: 4px; }
+.acciones { display: flex; gap: 8px; flex-wrap: wrap; }
+button {
+  font: inherit; font-size: 0.88rem; padding: 8px 14px; border-radius: 8px;
+  border: 1px solid var(--linea); background: var(--superficie); color: var(--texto); cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: var(--acento); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+button.primario { background: var(--verde); color: #fff; border-color: var(--verde); font-weight: 600; }
+button.primario:hover:not(:disabled) { filter: brightness(1.1); }
+.controles { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; margin: 12px 0; font-size: 0.85rem; color: var(--suave); }
+.controles label { display: flex; flex-direction: column; gap: 4px; }
+input[type="number"], input[type="text"], select {
+  font: inherit; font-size: 0.9rem; padding: 7px 9px; border: 1px solid var(--linea);
+  border-radius: 8px; background: var(--superficie); color: var(--texto);
+}
+.controles input[type="number"] { width: 110px; }
+#filtroGrupo { max-width: 260px; }
+input[type="file"] { color: var(--suave); }
+
+/* ---------- Mensajes ---------- */
+.mensaje { padding: 10px 14px; border-radius: 8px; margin: 0 0 16px; font-size: 0.88rem; border-left: 4px solid; background: var(--superficie); }
+.mensaje.info { border-color: var(--acento); }
+.mensaje.error { border-color: var(--rojo); background: color-mix(in srgb, var(--rojo) 10%, var(--superficie)); }
+.mensaje.aviso { border-color: var(--amarillo); background: color-mix(in srgb, var(--amarillo) 12%, var(--superficie)); }
+.mensaje ul { margin: 6px 0 0; padding-left: 20px; }
+
+/* ---------- Cifras ---------- */
+.cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 14px 0; }
+#panoramaCifras .cifras { margin-top: 0; }
+.cifra { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 14px 16px; box-shadow: var(--sombra); }
+.cifra .valor { font-size: 1.6rem; font-weight: 750; line-height: 1.15; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.cifra .rotulo { font-size: 0.8rem; color: var(--suave); margin-top: 4px; }
+.cifra.alerta { border-top: 3px solid var(--rojo); }
+.cifra.ok { border-top: 3px solid var(--verde); }
+.cifra.precaucion { border-top: 3px solid var(--amarillo); }
+
+.dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+
+/* ---------- Tablas ---------- */
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th, td { border-bottom: 1px solid var(--linea); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { font-weight: 600; color: var(--suave); background: var(--superficie-2); position: sticky; top: 0; z-index: 1; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tbody tr:hover td, tr:hover td { background: var(--superficie-2); }
+.tabla-scroll { overflow: auto; max-height: 440px; border: 1px solid var(--linea); border-radius: var(--radio); }
+.matriz td { text-align: center; font-variant-numeric: tabular-nums; }
+.matriz td.diag { background: var(--acento-suave); font-weight: 700; color: var(--acento); }
+
+.nivel { display: inline-block; padding: 1px 9px; border-radius: 999px; color: #fff; font-size: 0.76rem; font-weight: 600; }
+.nivel.Bajo { background: var(--bajo); }
+.nivel.Medio { background: var(--medio); color: #3a2c00; }
+.nivel.Alto { background: var(--alto); }
+
+/* ---------- Resultado ---------- */
+.resultado { border: 1px solid var(--linea); border-top: 4px solid var(--acento); border-radius: var(--radio); padding: 16px 18px; background: var(--superficie-2); }
+.resultado .grande { font-size: 1.4rem; font-weight: 750; margin: 4px 0 10px; }
+.barra { height: 8px; border-radius: 4px; background: var(--linea); margin: 3px 0 10px; }
+.barra div { height: 100%; border-radius: 4px; }
+
+/* ---------- Mapas y gráficas ---------- */
+.mapa { height: 460px; border-radius: var(--radio); margin-top: 14px; border: 1px solid var(--linea); background: var(--superficie-2); }
+.grafica { position: relative; height: 290px; }
+.leaflet-container { font-family: var(--fuente); }
+.leaflet-popup-content { font-size: 0.85rem; line-height: 1.45; }
+.leaflet-popup-content button { margin-top: 8px; }
+[data-theme="dark"] .leaflet-popup-content-wrapper, [data-theme="dark"] .leaflet-popup-tip,
+[data-theme="dark"] .leaflet-control-layers, [data-theme="dark"] .leaflet-bar a { background: var(--superficie); color: var(--texto); }
+
+/* ---------- Fuentes y flujo ---------- */
+.fuentes { font-size: 0.88rem; margin-top: 12px; border-top: 1px solid var(--linea); padding-top: 10px; }
+.fuentes summary { cursor: pointer; color: var(--acento); font-weight: 600; }
+.fuentes .carga { margin: 12px 0; }
+.flujo { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-bottom: 12px; }
+.flujo .paso { border: 1px solid var(--linea); background: var(--superficie-2); padding: 8px 12px; font-size: 0.82rem; border-radius: 8px; }
+.flujo .paso small { color: var(--suave); }
+.flujo .flecha { color: var(--suave); padding: 0 2px; }
+
+footer { text-align: center; color: var(--suave); font-size: 0.78rem; padding: 28px; }
+
+/* ---------- Pantallas medianas y celulares ---------- */
+@media (max-width: 1100px) {
+  .panorama { grid-template-columns: 1fr; }
+  .lista-riesgo { position: static; max-height: none; }
+}
+@media (max-width: 860px) {
+  .lateral { position: fixed; z-index: 1200; left: 0; top: 0; margin-left: calc(-1 * var(--ancho-lateral)); }
+  .app.menu-abierto .lateral { margin-left: 0; }
+  .app.menu-abierto .velo { display: block; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45); z-index: 1100; }
+  main { padding: 16px 16px 0; }
+  .barra-superior { padding: 10px 16px; }
+  .aviso-prediccion { padding: 9px 16px; }
+  .dos-columnas { grid-template-columns: 1fr; }
+  .mapa-grande { height: 420px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lateral { transition: none; }
+}
+.mensaje, .fuente-mini { overflow-wrap: anywhere; }

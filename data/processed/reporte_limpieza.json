@@ -1,0 +1,15 @@
+{
+  "divipola": {
+    "n_municipios": 87
+  },
+  "sismos": {
+    "n_eventos": 208230,
+    "rango_fechas": [
+      "1993-06-01 01:32:55",
+      "2026-10-13 11:35:05"
+    ]
+  },
+  "master": {
+    "n_municipios": 87
+  }
+}

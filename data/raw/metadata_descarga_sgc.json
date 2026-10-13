@@ -1,0 +1,23 @@
+{
+  "fuente": "Servicio Geológico Colombiano - Red Sismológica Nacional, Catálogo de Sismicidad",
+  "url": "http://bdrsnc.sgc.gov.co/paginas1/catalogo/",
+  "consultas": {
+    "1993-2018": "https://bdrsnc.sgc.gov.co/paginas1/catalogo/Consulta_Experta/consultaexperta_2.php",
+    "2018-hoy": "https://bdrsnc.sgc.gov.co/paginas1/catalogo/Consulta_Experta_Seiscomp/consultaexperta.php"
+  },
+  "fecha_descarga_utc": "2026-10-13T14:00:06+00:00",
+  "filtros": {
+    "latitudStart": 5.7,
+    "latitudEnd": 8.2,
+    "longitudStart": -74.6,
+    "longitudEnd": -72.4,
+    "magnitud": "0-9",
+    "profundidad_km": "0-700",
+    "rms_s": "0-10",
+    "gap_grados": "0-360",
+    "errores_km": "0-999",
+    "periodo": "1993-06-01 a 2026-10-13"
+  },
+  "eventos_1993_2018": 111908,
+  "eventos_2018_hoy": 110177
+}

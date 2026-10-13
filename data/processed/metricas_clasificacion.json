@@ -1,0 +1,136 @@
+{
+  "mejor_modelo": "XGBoost",
+  "f1_macro_cv": 0.6812,
+  "accuracy": 0.9091,
+  "precision_macro": 0.9107,
+  "recall_macro": 0.9107,
+  "f1_macro": 0.9079,
+  "matriz_confusion": {
+    "labels": [
+      "Bajo",
+      "Medio",
+      "Alto"
+    ],
+    "matrix": [
+      [
+        7,
+        0,
+        0
+      ],
+      [
+        1,
+        6,
+        0
+      ],
+      [
+        0,
+        1,
+        7
+      ]
+    ]
+  },
+  "comparacion_modelos_f1_cv": {
+    "RandomForest": 0.6642,
+    "GradientBoosting": 0.612,
+    "HistGradientBoosting": 0.5552,
+    "LogisticRegression": 0.653,
+    "XGBoost": 0.6812,
+    "LightGBM": 0.5995
+  },
+  "n_municipios": 87,
+  "features": [
+    "cantidad_total_sismos",
+    "magnitud_promedio",
+    "magnitud_maxima",
+    "magnitud_minima",
+    "magnitud_std",
+    "pct_sismos_mag_mayor_4",
+    "pct_sismos_mag_mayor_5",
+    "energia_sismica_acum",
+    "profundidad_promedio",
+    "profundidad_maxima",
+    "profundidad_minima",
+    "profundidad_std",
+    "pct_sismos_superficiales",
+    "frecuencia_sismica_anual",
+    "sismos_ultimos_10_anios",
+    "sismos_ultimos_5_anios",
+    "sismos_ultimos_2_anios",
+    "tendencia_sismica",
+    "crecimiento_frecuencia_sismica",
+    "poblacion_actual",
+    "poblacion_proyectada",
+    "crecimiento_poblacional",
+    "log_poblacion",
+    "emergencias_totales",
+    "emergencias_sismicas",
+    "emergencias_por_anio",
+    "fallecidos",
+    "heridos",
+    "personas_afectadas",
+    "lat_mpio",
+    "lon_mpio"
+  ],
+  "top_importancias": [
+    {
+      "feature": "energia_sismica_acum",
+      "importancia": 0.1111
+    },
+    {
+      "feature": "pct_sismos_mag_mayor_5",
+      "importancia": 0.0785
+    },
+    {
+      "feature": "heridos",
+      "importancia": 0.0606
+    },
+    {
+      "feature": "cantidad_total_sismos",
+      "importancia": 0.06
+    },
+    {
+      "feature": "poblacion_actual",
+      "importancia": 0.0572
+    },
+    {
+      "feature": "magnitud_maxima",
+      "importancia": 0.0482
+    },
+    {
+      "feature": "poblacion_proyectada",
+      "importancia": 0.0482
+    },
+    {
+      "feature": "frecuencia_sismica_anual",
+      "importancia": 0.0482
+    },
+    {
+      "feature": "sismos_ultimos_2_anios",
+      "importancia": 0.0474
+    },
+    {
+      "feature": "magnitud_minima",
+      "importancia": 0.047
+    },
+    {
+      "feature": "profundidad_minima",
+      "importancia": 0.04
+    },
+    {
+      "feature": "personas_afectadas",
+      "importancia": 0.0398
+    },
+    {
+      "feature": "magnitud_std",
+      "importancia": 0.0314
+    },
+    {
+      "feature": "emergencias_totales",
+      "importancia": 0.0301
+    },
+    {
+      "feature": "pct_sismos_mag_mayor_4",
+      "importancia": 0.0269
+    }
+  ]
+}
